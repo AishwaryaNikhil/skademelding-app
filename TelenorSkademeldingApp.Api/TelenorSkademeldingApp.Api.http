@@ -1,0 +1,43 @@
+@host = http://localhost:5121
+
+### 1. Get test token (Development only; credentials test/test)
+# @name login
+POST {{host}}/api/auth/token
+Content-Type: application/json
+
+{ "username": "test", "password": "test" }
+
+###
+@token = {{login.response.body.accessToken}}
+
+### 2. Lookups
+GET {{host}}/api/damage-types
+Authorization: Bearer {{token}}
+
+###
+GET {{host}}/api/damage-causes
+Authorization: Bearer {{token}}
+
+### 3. Create claim (multipart)
+# @name create
+POST {{host}}/api/claims
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=b
+
+--b
+Content-Disposition: form-data; name="damageTypeId"
+
+1
+--b
+Content-Disposition: form-data; name="damageCauseId"
+
+2
+--b
+Content-Disposition: form-data; name="summary"
+
+Tree fell on the car during the storm.
+--b--
+
+### 4. Get claim
+GET {{host}}/api/claims/{{create.response.body.id}}
+Authorization: Bearer {{token}}

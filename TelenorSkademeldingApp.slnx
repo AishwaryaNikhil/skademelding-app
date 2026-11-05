@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TelenorSkademeldingApp.Application/TelenorSkademeldingApp.Application.csproj" />
+  <Project Path="TelenorSkademeldingApp.Domain/TelenorSkademeldingApp.Domain.csproj" />
+  <Project Path="TelenorSkademeldingApp.Infrastructure/TelenorSkademeldingApp.Infrastructure.csproj" />
+  <Project Path="TelenorSkademeldingApp.Api/TelenorSkademeldingApp.Api.csproj" />
+</Solution>
